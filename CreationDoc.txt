@@ -1,0 +1,20 @@
+#django rest framework app setup/creation/install walkthrough
+#using only python 3, which can be a real pain as DRF tut seems to all default to 2.x.x
+
+#how I can recreate || retrace my steps for future projects or revisions
+
+
+open a new terminal session, navigate to new directory, git init 
+add in readme doc, cheatsheets, whatever else to keep it organized
+create new repo on github, set this as "origin" or whatever name, 
+set new GH repo as the new local project dir's remote repo
+
+#
+
+''' have encountered an install error with $pip install django
+in order to resolve this error, I have done the following:
+sudo python3 -m pip install django
+sudo python3 -m pip install djangorestframework
+'''
+
+#be sure to use $python3 for all python calls
