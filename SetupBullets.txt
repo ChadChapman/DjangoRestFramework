@@ -93,6 +93,85 @@ zlib                      1.2.11               ha838bed_2    anaconda
 (tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial/tutorial$ django-admin.py startapp quickstart
 (tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial/tutorial$ cd ..
 
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ pwd
+/home/dave/DjangoProjects/dj_rest_framework/tutorial
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ find .
+.
+./manage.py
+./tutorial
+./tutorial/settings.py
+./tutorial/__init__.py
+./tutorial/quickstart
+./tutorial/quickstart/tests.py
+./tutorial/quickstart/migrations
+./tutorial/quickstart/migrations/__init__.py
+./tutorial/quickstart/models.py
+./tutorial/quickstart/admin.py
+./tutorial/quickstart/apps.py
+./tutorial/quickstart/__init__.py
+./tutorial/quickstart/views.py
+./tutorial/urls.py
+./tutorial/wsgi.py
+
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying sessions.0001_initial... OK
+
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ python3 manage.py createsuperuser
+Username (leave blank to use 'dave'): admin
+Email address: abc@123.com
+Password: blahblahblah
+Password (again): 
+Superuser created successfully.
+
+
+#out of terminal, into IDE now
+#serializers.py file:
+from django.contrib.auth.models import User, Group
+from rest_framework import serializers
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = User
+		fields = ('url', 'username', 'email', 'groups')
+
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Group
+		fields = ('url', 'name')
+
+#now open views.py and fill in:
+from django.shortcuts import render
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from tutorial.quickstart.serializers import UserSerializer, GroupSerializer
+
+# views here:
+
+#API endpoint to allow editing and viewing of Users
+class UserViewSet(viewset.ModelViewSet):
+	queryset = User.objects.all().order_by('-date_joined')
+	serializer_class = UserSerializer
+
+#API endpoint to allow editing and viewing of Groups
+class GroupViewSet(viewset.ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = GroupSerializer
+
 
 
 
