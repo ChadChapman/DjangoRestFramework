@@ -1,0 +1,5 @@
+
+
+dave@RUPC:~/DjangoProjects/anaconda_testing$ conda create -n myenv
+
+
