@@ -3,13 +3,12 @@
 
 #how I can recreate || retrace my steps for future projects or revisions
 
-
 open a new terminal session, navigate to new directory, git init 
 add in readme doc, cheatsheets, whatever else to keep it organized
 create new repo on github, set this as "origin" or whatever name, 
 set new GH repo as the new local project dir's remote repo
 
-#
+#remember should all be py3
 
 ''' have encountered an install error with $pip install django
 in order to resolve this error, I have done the following:
@@ -18,3 +17,80 @@ sudo python3 -m pip install djangorestframework
 '''
 
 #be sure to use $python3 for all python calls
+
+create a virtualenv and step into it:
+
+#what about a conda env?  trying that first 
+//
+dave@RUPC:~/DjangoProjects/anaconda_testing$ conda create -n myenv
+...
+Package plan for installation in environment /home/dave/anaconda3/envs/myenv:
+
+Proceed ([y]/n)? y
+
+#
+# To activate this environment, use:
+# > source activate myenv
+#
+# To deactivate an active environment, use:
+# > source deactivate
+#
+//
+#^^^comes with no packages installed into the env, have to manuall install all? - yes
+
+to install django using conda:
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing$ conda install -c anaconda django
+
+//
+no drf yet in standard conda, have to instead install with:
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing$ conda config --add channels conda-forge
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing$ conda install djangorestframework
+Fetching package metadata .............
+Solving package specifications: .
+
+Package plan for installation in environment /home/dave/anaconda3/envs/myenv:
+
+The following NEW packages will be INSTALLED:
+
+    djangorestframework: 3.7.3-py_0 conda-forge
+
+Proceed ([y]/n)? y
+
+djangorestfram 100% |####################################################| Time: 0:00:01 629.06 kB/s
+//
+
+#now to create the basic django application
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing$ django-admin.py startproject testproj .
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing$ cd testproj
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing/testproj$ django-admin.py startapp quickstart
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing/testproj$ cd ..
+
+#now let's get our bearings and make sure everything is ok
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing$ pwd
+/home/dave/DjangoProjects/anaconda_testing
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing$ find .
+
+#all good by now, dir tree looks good, make the sqlite db next:
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing$ python3 manage.py migrate
+
+//
+#next, create a super user:
+(myenv) dave@RUPC:~/DjangoProjects/anaconda_testing$ python3 manage.py createsuperuser
+Username (leave blank to use 'dave'): admin
+Email address: abc@123.com
+Password: password123 
+Password (again): 
+Superuser created successfully.
+//
+
+//beginning again in actual django rest dir, conda worked fine, ready to move forward with 
+//conda / rest testing and process recording
+
+
+
+
+
+
+
+
+
