@@ -1,5 +1,5 @@
-# DjangoRestFramework
-moving from monolith Django apps to using a RESTful API
+# Django Rest Framework Python3 Walkthrough 
+a personal project moving from monolith Django apps to using a RESTful API
 
 Django Rest Framework is great and love the project.  
 However, the quickstart docs use virtualenv and py2.X.X and I try not to roll like that.
