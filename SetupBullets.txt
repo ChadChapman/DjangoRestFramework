@@ -1,5 +1,108 @@
+dave@RUPC:~/DjangoProjects/dj_rest_framework$ mkdir tutorial
+dave@RUPC:~/DjangoProjects/dj_rest_framework$ cd tutorial
+dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda create -n tutenv
+Fetching package metadata .............
+Solving package specifications: 
+Package plan for installation in environment /home/dave/anaconda3/envs/tutenv:
+
+Proceed ([y]/n)? y
+
+#
+# To activate this environment, use:
+# > source activate tutenv
+#
+# To deactivate an active environment, use:
+# > source deactivate
+#
+
+dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ source activate tutenv
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda list
+# packages in environment at /home/dave/anaconda3/envs/tutenv:
+#
+
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda install -c anaconda django
+Fetching package metadata ...............
+Solving package specifications: .
+
+Package plan for installation in environment /home/dave/anaconda3/envs/tutenv:
+
+The following NEW packages will be INSTALLED:
+
+    ca-certificates: 2017.08.26-h1d4fec5_0    anaconda
+    certifi:         2017.11.5-py36hf29ccca_0 anaconda
+    django:          1.11.8-py36hd476221_0    anaconda
+    libedit:         3.1-heed3624_0           anaconda
+    libffi:          3.2.1-hd88cf55_4         anaconda
+    libgcc-ng:       7.2.0-h7cc24e2_2         anaconda
+    libstdcxx-ng:    7.2.0-h7a57d05_2         anaconda
+    ncurses:         6.0-h9df7e31_2           anaconda
+    openssl:         1.0.2n-hb7f436b_0        anaconda
+    pip:             9.0.1-py36h6c6f9ce_4     anaconda
+    python:          3.6.3-h6c0c0dc_5         anaconda
+    pytz:            2017.3-py36h63b9c63_0    anaconda
+    readline:        7.0-ha6073c6_4           anaconda
+    setuptools:      36.5.0-py36he42e2e1_0    anaconda
+    sqlite:          3.20.1-hb898158_2        anaconda
+    tk:              8.6.7-hc745277_3         anaconda
+    wheel:           0.30.0-py36hfd4bba0_1    anaconda
+    xz:              5.2.3-h55aa19d_2         anaconda
+    zlib:            1.2.11-ha838bed_2        anaconda
+
+Proceed ([y]/n)? y
+
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda config --add channels conda-forge
+Warning: 'conda-forge' already in 'channels' list, moving to the top
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda install djangorestframework
+Fetching package metadata .............
+Solving package specifications: .
+
+Package plan for installation in environment /home/dave/anaconda3/envs/tutenv:
+
+The following NEW packages will be INSTALLED:
+
+    djangorestframework: 3.7.3-py_0 conda-forge
+
+Proceed ([y]/n)? y
+
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda list
+# packages in environment at /home/dave/anaconda3/envs/tutenv:
+#
+ca-certificates           2017.08.26           h1d4fec5_0    anaconda
+certifi                   2017.11.5        py36hf29ccca_0    anaconda
+django                    1.11.8           py36hd476221_0    anaconda
+djangorestframework       3.7.3                      py_0    conda-forge
+libedit                   3.1                  heed3624_0    anaconda
+libffi                    3.2.1                hd88cf55_4    anaconda
+libgcc-ng                 7.2.0                h7cc24e2_2    anaconda
+libstdcxx-ng              7.2.0                h7a57d05_2    anaconda
+ncurses                   6.0                  h9df7e31_2    anaconda
+openssl                   1.0.2n               hb7f436b_0    anaconda
+pip                       9.0.1            py36h6c6f9ce_4    anaconda
+python                    3.6.3                h6c0c0dc_5    anaconda
+pytz                      2017.3           py36h63b9c63_0    anaconda
+readline                  7.0                  ha6073c6_4    anaconda
+setuptools                36.5.0           py36he42e2e1_0    anaconda
+sqlite                    3.20.1               hb898158_2    anaconda
+tk                        8.6.7                hc745277_3    anaconda
+wheel                     0.30.0           py36hfd4bba0_1    anaconda
+xz                        5.2.3                h55aa19d_2    anaconda
+zlib                      1.2.11               ha838bed_2    anaconda
+
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ django-admin.py startproject tutorial .
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ cd tutorial
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial/tutorial$ django-admin.py startapp quickstart
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial/tutorial$ cd ..
 
 
+
+
+##### old #####
 dave@RUPC:~/DjangoProjects/anaconda_testing$ conda create -n myenv
 
+dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ source activate restenv
 
+(restenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda install -c anaconda django
+
+(restenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda config --add channels conda-forge
+
+(restenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda install djangorestframework
