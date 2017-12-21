@@ -1,0 +1,94 @@
+"""
+Hi there, please reference the doc in this repo titled 'QuickstartSupplement'
+in order to get a condaenv going with Python3, Django and DjangorestFramework installed.
+Once those are installed (which can be verified with: $ conda list) pick up
+here and we'll get going through the DRF's 7-part tutorial.
+If you have not yet gone through the vanilla Django tutorial, you may want to 
+head there first to get a feel for the framework.  A link to the Django project
+is provided in the readme of this repo.  I'm not sure it's neccessary but it may certainly
+prove useful if you are new to the Python language, or MV* frameworks in general.
+
+As mentioned in the readme doc, this SUPPLEMENT is meant to assist those looking to minimize
+time spent searching for answers on how to map the DRF's docs, which seem to use Python2, 
+pip and virtualenv, over to using Python3 and Conda and condaenv respectively.
+This is not a comprehensive guide to using Django or the DRF nor is it meant to be.
+I highly recommend following the DRF's provided tutorial and refer to the docs in this repo
+only when needed.
+
+Good luck and cheers!
+"""
+
+//
+#first let's grab pygments:
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework$ conda install pygments
+Fetching package metadata .............
+Solving package specifications: .
+
+Package plan for installation in environment /home/dave/anaconda3/envs/tutenv:
+
+The following NEW packages will be INSTALLED:
+
+    pygments: 2.2.0-py36_0 conda-forge
+
+Proceed ([y]/n)? y
+
+pygments-2.2.0 100% |########################################################################| Time: 0:00:05 278.82 kB/s
+//
+
+"""
+The DRF quickstart guide uses a dir named 'tutorial' and the actual Tutorial does also.
+Therefore, to avoid any confusion, I am going to use a dir named 'drftutorial' for the
+7-part DRF tutorial.  Any mentions of /tutorial in the DRF docs will map to /drftutorial
+in the docs in this repo.
+"""
+//
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework$ conda list
+# packages in environment at /home/dave/anaconda3/envs/tutenv:
+#
+ca-certificates           2017.08.26           h1d4fec5_0    anaconda
+certifi                   2017.11.5        py36hf29ccca_0    anaconda
+django                    1.11.8           py36hd476221_0    anaconda
+djangorestframework       3.7.3                      py_0    conda-forge
+libedit                   3.1                  heed3624_0    anaconda
+libffi                    3.2.1                hd88cf55_4    anaconda
+libgcc-ng                 7.2.0                h7cc24e2_2    anaconda
+libstdcxx-ng              7.2.0                h7a57d05_2    anaconda
+ncurses                   6.0                  h9df7e31_2    anaconda
+openssl                   1.0.2n               hb7f436b_0    anaconda
+pip                       9.0.1            py36h6c6f9ce_4    anaconda
+pygments                  2.2.0                    py36_0    conda-forge
+python                    3.6.3                h6c0c0dc_5    anaconda
+pytz                      2017.3           py36h63b9c63_0    anaconda
+readline                  7.0                  ha6073c6_4    anaconda
+setuptools                36.5.0           py36he42e2e1_0    anaconda
+sqlite                    3.20.1               hb898158_2    anaconda
+tk                        8.6.7                hc745277_3    anaconda
+wheel                     0.30.0           py36hfd4bba0_1    anaconda
+xz                        5.2.3                h55aa19d_2    anaconda
+zlib                      1.2.11               ha838bed_2    anaconda
+//
+
+//
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework$ django-admin.py startproject drftutorial
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework$ cd drftutorial
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/drftutorial$ python3 manage.py startapp snippets
+//
+
+//
+#now to the IDE or text editor:
+# code snippet from /drftutorial/settings.py:
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'snippets.apps.SnippetsConfig',
+]
+//
+
+
+
+
