@@ -215,19 +215,21 @@ REST_FRAMEWORK = [		#added this also
     ],
     'PAGE_SIZE': 10
 ]
+//
 
+//
 #make sure you have saved all of your files before this next line!
 #fire up the server:
 (tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ python3 manage.py runserver
+//
+
+//
+"""
+Ok, from here your server should be running if all went well.
+As stated in the README for this repo, this doc is a supplement to the DRF quickstart guide.  That guide should be your main source of reference with this doc 
+playing providing an assist for using Python3 and Conda instead of Python2, virtualenv and pip.
+Next up is the in-depth tutorial for DRF which I will cover in separate docs in this repo.
+Hope this guide helped and cheers!
+"""
 
 
-##### old #####
-dave@RUPC:~/DjangoProjects/anaconda_testing$ conda create -n myenv
-
-dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ source activate restenv
-
-(restenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda install -c anaconda django
-
-(restenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda config --add channels conda-forge
-
-(restenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda install djangorestframework

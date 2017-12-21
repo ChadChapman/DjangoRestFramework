@@ -1,0 +1,14 @@
+##### old paste bin#####
+//
+dave@RUPC:~/DjangoProjects/anaconda_testing$ conda create -n myenv
+
+dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ source activate restenv
+
+(restenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda install -c anaconda django
+
+(restenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda config --add channels conda-forge
+
+(restenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda install djangorestframework
+//
+
+
