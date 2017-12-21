@@ -16,7 +16,9 @@ Proceed ([y]/n)? y
 #
 
 dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ source activate tutenv
+
 (tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ conda list
+
 # packages in environment at /home/dave/anaconda3/envs/tutenv:
 #
 
