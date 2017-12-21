@@ -1,13 +1,15 @@
-# Django Rest Framework w/ Python3 & Conda: A Walk-through 
-A personal project to learn about moving from a monolith Django project to using a RESTful API
+# Django Rest Framework w/ Python3 & Conda: 
+# A Walk-through 
+
+This is a personal project to learn about moving from a monolith Django project to using a RESTful API
 
 Django Rest Framework is great and I really appreciate the project.
 However, the docs use virtualenv and Python 2.X and I try not to roll like that.
 
-This project is an attempt to provide more of a direct map of how to get up and rolling with Django, DRF, Conda as a package manager and condaenv as a virtual environment.
+This project is an attempt to provide more of a direct map to get up and rolling with Django, DRF, Conda as a package manager and condaenv as a virtual environment.
 
-My aim through documenting this process is to minimize your time searching the web. 
-I have done my best to include nearly every step.  Some steps I did not deem worthy to include as they do not
+My aim through documenting this process is to minimize others' time searching the web for the same info. 
+I have done my best to include nearly every step.  Some steps I did not deem worthy to include as they
 differ very little (if at all) from the DRF docs.
 Docs in this repo with the title *Verbose include additional comments about the process.
 Docs in this repo with the title *Supplement are meant to be a more direct guide on how to complete specific exercises.
