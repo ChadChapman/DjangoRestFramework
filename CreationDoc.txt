@@ -1,5 +1,13 @@
-#django rest framework app setup/creation/install walkthrough
-#using only python 3, which can be a real pain as DRF tut seems to all default to 2.x.x
+"""
+Django rest framework app setup/creation/install walkthrough
+using only python 3, which can be a real pain as DRF tut seems to all default to 2.x.x
+
+This doc is intended to be a more verbose, explanatory version of the QuickstartSupplement doc.
+That said, the QuickstartSupplement doc is done and I am moving onto the DRF Tutorial which is more in-depth.  
+So for the moment, this doc will not be updated and the QuickstartSupplement will have to suffice.
+Check back later for witty commentary and powerful insights regarding DRF and getting it up and running with Python3 and Conda!
+
+"""
 
 #how I can recreate || retrace my steps for future projects or revisions
 
