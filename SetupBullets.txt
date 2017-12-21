@@ -140,6 +140,7 @@ Superuser created successfully.
 
 
 #out of terminal, into IDE now
+//
 #serializers.py file:
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
@@ -159,8 +160,10 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from tutorial.quickstart.serializers import UserSerializer, GroupSerializer
+//
 
-# views here:
+//
+# views.py file:
 
 #API endpoint to allow editing and viewing of Users
 class UserViewSet(viewset.ModelViewSet):
@@ -171,8 +174,51 @@ class UserViewSet(viewset.ModelViewSet):
 class GroupViewSet(viewset.ModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = GroupSerializer
+//
 
+//
+# urls.py file:
 
+from django.conf.urls import url, include
+#from django.contrib import admin
+from rest_framework import routers
+from tutorial.quickstart import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewset)
+
+#wire the API using automatic URL routing
+#also included are login URLs for "browsable" API
+urlpatterns = [
+	url(r'^', include(router.urls)),
+	url(r'^api-auth/', include('rest_framework.urls', namespace = rest_framework))
+    #url(r'^admin/', admin.site.urls),
+]
+//
+
+//
+# snippet from urls.py:
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',	#added this line
+]
+
+REST_FRAMEWORK = [		#added this also
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10
+]
+
+#make sure you have saved all of your files before this next line!
+#fire up the server:
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/tutorial$ python3 manage.py runserver
 
 
 ##### old #####

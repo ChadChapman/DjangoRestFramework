@@ -6,12 +6,12 @@ from tutorial.quickstart.serializers import UserSerializer, GroupSerializer
 # views here:
 
 #API endpoint to allow editing and viewing of Users
-class UserViewSet(viewset.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all().order_by('-date_joined')
 	serializer_class = UserSerializer
 
 #API endpoint to allow editing and viewing of Groups
-class GroupViewSet(viewset.ModelViewSet):
+class GroupViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = GroupSerializer
 
