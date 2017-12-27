@@ -681,4 +681,27 @@ Password (again): blah
 Superuser created successfully.
 //
 
+//
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/drftutorial$ http -a admin:password123 POST http://127.0.0.1:8000/snippets/ code="admin code best code!"
+HTTP/1.0 201 Created
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 122
+Content-Type: application/json
+Date: Wed, 27 Dec 2017 23:43:35 GMT
+Server: WSGIServer/0.2 CPython/3.6.3
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "code": "admin code best code!",
+    "id": 3,
+    "language": "python3",
+    "linenos": false,
+    "owner": "admin",
+    "style": "friendly",
+    "title": ""
+}
+
+//
+
 
