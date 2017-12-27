@@ -5,7 +5,9 @@
 from snippets.models import Snippet
 from snippets.serializers import SnippetSerializer
 from rest_framework import generics
-
+#
+from django.contrib.auth.models import User
+from snippets.serializers import UserSerializer
 """
 #with mixins and generics:
 from snippets.models import Snippet
@@ -46,6 +48,10 @@ from rest_framework.parsers import JSONParser
 class SnippetList(generics.ListCreateAPIView):
 	queryset = Snippet.objects.all()
 	serializer_class = SnippetSerializer
+
+	#create() of serializer now passes owner field also
+	def perform_create(self, serializer):
+		serializer.save(owner=self.request.user)
 
 
 """
@@ -123,7 +129,7 @@ def snippet_list(request):
 """
 
 #using generic class-based views:
-class SnippetDetail(generics.RetieveUpdateDestroyAPIView):
+class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = Snippet.objects.all()
 	serializer_class = SnippetSerializer
 
@@ -232,3 +238,11 @@ def snippet_detail(request, pk):
 		snippet.delete()
 		return HttpResponse(status=204)
 """
+
+class UserList(generics.ListAPIView):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
+
+class UserDetail(generics.RetrieveAPIView):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
