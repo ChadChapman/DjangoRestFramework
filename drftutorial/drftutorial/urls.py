@@ -19,4 +19,6 @@ from django.contrib import admin
 urlpatterns = [
     #url(r'^admin/', admin.site.urls), #leaving out unless causes a bug
     url(r'^', include('snippets.urls')),
+    url(r'^api-auth/', include('rest_framework.urls')), #correct urls.py file?
+    #^^ api-auth part can be changed to whatever
 ]
