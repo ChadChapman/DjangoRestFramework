@@ -8,6 +8,9 @@ from rest_framework import generics
 #
 from django.contrib.auth.models import User
 from snippets.serializers import UserSerializer
+#
+from rest_framework import permissions
+
 """
 #with mixins and generics:
 from snippets.models import Snippet
@@ -52,6 +55,8 @@ class SnippetList(generics.ListCreateAPIView):
 	#create() of serializer now passes owner field also
 	def perform_create(self, serializer):
 		serializer.save(owner=self.request.user)
+
+	permision_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 """
@@ -132,6 +137,8 @@ def snippet_list(request):
 class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = Snippet.objects.all()
 	serializer_class = SnippetSerializer
+	permision_classes = (permissions.IsAuthenticatedOrReadOnly
+						, IsOwnerOrReadOnly, )
 
 """
 #using mixins and generics:
