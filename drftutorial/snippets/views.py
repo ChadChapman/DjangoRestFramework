@@ -1,13 +1,28 @@
 
 #never quite sure if tutorial mentions all lines to be deleted or not?
 
+#generic class-based views:
+from snippets.models import Snippet
+from snippets.serializers import SnippetSerializer
+from rest_framework import generics
 
+"""
+#with mixins and generics:
+from snippets.models import Snippet
+from snippets.serializers import SnippetSerializer
+from rest_framework import mixins
+from rest_framework import generics
+"""
+
+"""
+class-based refactor:
 from snippets.models import Snippet
 from snippets.serializers import SnippetSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+"""
 
 """
 #refactor #1
@@ -17,6 +32,7 @@ from rest_framework.response import Response
 from snippets.models import Snippet
 from snippets.serializers import SnippetSerializer
 """
+
 """
 #JSON only group
 from django.shortcuts import render
@@ -25,7 +41,29 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 """
-	###
+
+#with generic class-based views:
+class SnippetList(generics.ListCreateAPIView):
+	queryset = Snippet.objects.all()
+	serializer_class = SnippetSerializer
+
+
+"""
+#with mixins and generics:
+class SnippetList(mixins.ListModelMixin
+					, mixins.CreateModelMixin
+					, generics.GenericAPIView):
+	queryset = Snippet.objects.all()
+	serializer_class = SnippetSerializer
+
+	def get(self, request, *args, **kwargs):
+		return self.list(request, *args, **kwargs)
+
+	def post(self, request, *args, **kwargs):
+		return self.create(request, *args, **kwargs)
+
+"""
+"""	
 #now onto class-based views:
 class SnippetList(APIView):
 	#list all code snippets or create a new one
@@ -41,6 +79,7 @@ class SnippetList(APIView):
 			return Response(serializer.data, status=status.HTTP_201_CREATED)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+"""
 ###
 
 #first refactor on how to refine views:
@@ -83,7 +122,31 @@ def snippet_list(request):
 	###
 """
 
+#using generic class-based views:
+class SnippetDetail(generics.RetieveUpdateDestroyAPIView):
+	queryset = Snippet.objects.all()
+	serializer_class = SnippetSerializer
 
+"""
+#using mixins and generics:
+class SnippetDetail(mixins.RetrieveModelMixin
+					, mixins.UpdateModelMixin
+					, mixins.DestroyModelMixin
+					, generics.GenericAPIView):
+	queryset = Snippet.objects.all()
+	serializer_class = SnippetSerializer
+
+	def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+"""
+"""
 #using class-based view:
 
 class SnippetDetail(APIView):
@@ -112,8 +175,8 @@ class SnippetDetail(APIView):
 		snippet = self.get_object(pk)
 		snippet.delete()
 		return Response(status=status.HTTP_204_NO_CONTEXT)
+"""
 
-	
 
 
 #first refactor for refine in views
