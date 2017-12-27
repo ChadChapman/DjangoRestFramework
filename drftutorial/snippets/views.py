@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from snippets.serializers import UserSerializer
 #
 from rest_framework import permissions
-
+from snippets.permissions import IsOwnerOrReadOnly
 """
 #with mixins and generics:
 from snippets.models import Snippet
