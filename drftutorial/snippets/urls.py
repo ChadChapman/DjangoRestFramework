@@ -6,6 +6,8 @@ from snippets.views import SnippetViewSet, UserViewSet, api_root
 from rest_framework import renderers
 #
 from rest_framework.routers import DefaultRouter
+#
+from rest_framework.schemas import get_schema_view
 
 
 """
@@ -41,11 +43,16 @@ router = DefaultRouter()
 router.register(r'snippets', views.SnippetViewSet)
 router.register(r'users', views.UserViewSet)
 
+#Schemas added for api documentation
+schema_view = get_schema_view(title='Pastebin API')
+
 urlpatterns = [
 
+	#schema from coreapi
+	url(r'^schema/$', schema_view),
+	
 	#Routers, refactor #5:
-	url(r'^', include(router.urls))
-
+	url(r'^', include(router.urls)),
 
 # """
 # # ViewSet based urls, refactor #4:
@@ -74,6 +81,11 @@ urlpatterns = [
 # 	url(r'^snippets/$', views.snippet_list),
 # 	url(r'^snippets/(?P<pk>[0-9]+)/$', views.snippet_detail),
 # """
-]
+
+ ]
+
+"""
+#refactor with routers makes this create duplicate regex in the url defs
 #refactor #2:
-urlpatterns = format_suffix_patterns(urlpatterns)
+#urlpatterns = format_suffix_patterns(urlpatterns)
+"""
