@@ -19,6 +19,8 @@ from rest_framework.reverse import reverse
 from rest_framework import renderers
 from rest_framework.response import Response
 #
+from rest_framework import viewsets
+from rest_framework.decorators import detail_route
 
 @api_view(['GET'])
 def api_root(request, format=None):
@@ -63,6 +65,35 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 """
 
+class SnippetViewSet(viewsets.ModelViewSet):
+	"""
+	auto provides list, create, retrieve, update, destroy functionality
+	also provides extra highlight functionality
+	"""
+	queryset = Snippet.objects.all()
+	serializer_class = SnippetSerializer
+	permision_classes = (permissions.IsAuthenticatedOrReadOnly 
+						, IsOwnerOrReadOnly
+						, )
+
+	"""
+	creates a custom action named highlight
+	, responds to GET by default
+	, responds to POST w/a methods arg passed
+	"""
+	@detail_route(renderer_classes=[renderers.StaticHTMLRenderer]) 
+	def highlight(self, request, *args, **kwargs): 
+		snippet = self.get_object()
+		return Response(snippet.highlighted)
+
+	def perform_create(self, serializer):
+		serializer.save(owner=self.request.user)
+
+
+
+"""
+# snippet list, detail and highlight all being replaced with SnippetViewSet
+
 #with generic class-based views:
 class SnippetList(generics.ListCreateAPIView):
 	queryset = Snippet.objects.all()
@@ -73,7 +104,7 @@ class SnippetList(generics.ListCreateAPIView):
 		serializer.save(owner=self.request.user)
 
 	permision_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
+"""
 
 """
 #with mixins and generics:
@@ -148,13 +179,16 @@ def snippet_list(request):
 		return JsonResponse(serializer.errors, status=400)
 	###
 """
+"""
+# snippet list, detail and highlight all being replaced with SnippetViewSet
 
-#using generic class-based views:
+# using generic class-based views:
 class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = Snippet.objects.all()
 	serializer_class = SnippetSerializer
 	permision_classes = (permissions.IsAuthenticatedOrReadOnly
 						, IsOwnerOrReadOnly, )
+"""
 
 """
 #using mixins and generics:
@@ -259,7 +293,13 @@ def snippet_detail(request, pk):
 		snippet.delete()
 		return HttpResponse(status=204)
 """
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+	#viewset auto provides list and detail actions
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
 
+"""
+#Views approach, being replaced with ViewSet approach
 class UserList(generics.ListAPIView):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
@@ -267,6 +307,10 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
+"""
+
+"""
+# snippet list, detail and highlight all being replaced with SnippetViewSet
 
 class SnippetHighlight(generics.GenericAPIView):
 	queryset=Snippet.objects.all()
@@ -277,3 +321,4 @@ class SnippetHighlight(generics.GenericAPIView):
 		return Response(snippet.highlighted
 
 )
+"""
