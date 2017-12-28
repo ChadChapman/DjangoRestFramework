@@ -704,4 +704,8 @@ X-Frame-Options: SAMEORIGIN
 
 //
 
+//
+(tutenv) dave@RUPC:~/DjangoProjects/dj_rest_framework/drftutorial$ pip install coreapi
+//
+
 

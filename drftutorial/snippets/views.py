@@ -77,9 +77,10 @@ class SnippetViewSet(viewsets.ModelViewSet):
 						, )
 
 	"""
-	creates a custom action named highlight
+	creates a custom action named highlight (custom beyond CRUD)
 	, responds to GET by default
 	, responds to POST w/a methods arg passed
+	, use url_path decorator to change url construction from default
 	"""
 	@detail_route(renderer_classes=[renderers.StaticHTMLRenderer]) 
 	def highlight(self, request, *args, **kwargs): 
