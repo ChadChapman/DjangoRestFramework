@@ -4,7 +4,12 @@ from snippets import views
 #
 from snippets.views import SnippetViewSet, UserViewSet, api_root
 from rest_framework import renderers
+#
+from rest_framework.routers import DefaultRouter
 
+
+"""
+# ViewSets, refactor #4:
 snippet_list = SnippetViewSet.as_view({
 	'get': 'list'
 	, 'post': 'create'
@@ -29,16 +34,29 @@ user_list = UserViewSet.as_view({
 user_detail = UserViewSet.as_view({
 	'get': 'retrieve'
 	})
+"""
+
+#Routers, refactor #5:
+router = DefaultRouter()
+router.register(r'snippets', views.SnippetViewSet)
+router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
-# ViewSet based urls, refactor #4:
-	url(r'^$', api_root)
-	, url(r'^snippets/$', snippet_list, name='snippet-list')
-	, url(r'^snippets/(?P<pk>[0-9]+)/$', snippet_detail, name='snippet-detail')
 
-	, url(r'^users/$', user_list, name='user-list')
-	, url(r'^users/(?P<pk>[0-9]+)/$', user_detail, name='user-detail')
+	#Routers, refactor #5:
+	url(r'^', include(router.urls))
 
+
+# """
+# # ViewSet based urls, refactor #4:
+# 	url(r'^$', api_root)
+# 	, url(r'^snippets/$', snippet_list, name='snippet-list')
+# 	, url(r'^snippets/(?P<pk>[0-9]+)/$', snippet_detail, name='snippet-detail')
+
+# 	, url(r'^users/$', user_list, name='user-list')
+# 	, url(r'^users/(?P<pk>[0-9]+)/$', user_detail, name='user-detail')
+
+# """
 # """
 # #class-based views, refactor #3:
 # 	url(r'^$', views.api_root),
